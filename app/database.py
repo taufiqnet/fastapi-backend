@@ -2,8 +2,7 @@ from collections.abc import AsyncGenerator
 import uuid
 import datetime
 
-from sqlalchemy import Column, String, Text, DateTime, ForeignKey
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Column, String, Text, DateTime
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     create_async_engine,
@@ -22,12 +21,12 @@ class Post(Base):
     __tablename__ = "posts"
 
     id = Column(
-        UUID(as_uuid=True),
+        String(36),
         primary_key=True,
-        default=uuid.uuid4,
+        default=lambda: str(uuid.uuid4()),
     )
 
-    caption = Column(Text)
+    caption = Column(Text, nullable=True)
 
     url = Column(
         String,
@@ -47,6 +46,7 @@ class Post(Base):
     created_at = Column(
         DateTime,
         default=datetime.datetime.utcnow,
+        nullable=False,
     )
 
 
