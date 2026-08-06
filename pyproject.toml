@@ -1,0 +1,15 @@
+[project]
+name = "fastapi-backend"
+version = "0.1.0"
+description = "FastAPI Backend"
+readme = "README.md"
+authors = [
+    { name = "Taufiqur", email = "taufiqnet@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "aiosqlite>=0.22.1",
+    "fastapi>=0.116.0",
+    "python-dotenv>=1.2.2",
+    "uvicorn[standard]>=0.35.0",
+]
