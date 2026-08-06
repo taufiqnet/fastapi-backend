@@ -14,6 +14,7 @@ text_posts = [
     {
         "id": 2,
         "title": "Post 2",
+        "content": "This is the second post"
     }
 ]
 
@@ -24,3 +25,11 @@ async def root():
 @app.get("/posts")
 def get_all_posts():
     return text_posts
+
+@app.get("/posts/{id}")
+def get_post(id: int):
+    for post in text_posts:
+        if post["id"] == id:
+            return post
+
+    raise HTTPException(status_code=404, detail="Post not found")
